@@ -16,7 +16,9 @@ export class AppComponent {
     public callService: CallService,
     public streamService: StreamService,
     public socket:SignalingService
-  ) { }
+  ) {
+    this.GetUserList();
+   }
 
   async initConnection() {
 
@@ -54,9 +56,25 @@ export class AppComponent {
 
   }
 
-
+  MessageText:any = ""
   Hitrequest(){
-    let abc= 'abc'
-    this.socket.sendSignal(abc);
+    this.socket.sendSignal(this.MessageText);
+  }
+
+  UserList:any =[]
+  UserTo:any ='';
+  GetUserList()
+  {
+    this.socket.GetAllUsers().subscribe(x=>{
+      console.log(x)
+      this.UserList = x
+    })
+  }
+
+  sendMessage()
+  {
+   this.socket.SendMessage(this.MessageText,this.UserTo).subscribe(x=>{
+    console.log(x)
+   })
   }
 }

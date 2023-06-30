@@ -32,5 +32,12 @@
     </span>
   </li>
 </ul> -->
+<div class="chat">
+  <input type = "text" [(ngModel)]="UserTo">
+  <input type="text" [(ngModel)]="MessageText">
+  <br>
+  <button class="button" (click)="sendMessage()">send</button>
+</div>
 
-<button (click)="Hitrequest()">click</button>
+<button (click)="GetUserList()">Getuser</button>
+{{UserList |json }}
